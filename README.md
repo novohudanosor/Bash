@@ -84,3 +84,54 @@ Num_rsp Response codes
       2 499
       3 500
 ``` 
+9. Задание для **cron**
+```
+calculate dem # crontab -e
+...
+calculate dem # crontab -l
+SHELL=/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+*/2 * * * * parse_log /tmp/access-4560-644067.log | mutt -s report_"`date`" -- spinal07@mail.ru
+```
+10. Скрипт сопировал в /bin. Для быстрой проверки работоспособности отправка осуществлялась каждую вторую минуту часа.
+11. Проверка работоспособности CRON
+``` 
+calculate dem # cat /var/log/messages
+...
+Jun 29 14:12:00 calculate crond[2841]: (root) RELOAD (/var/spool/cron/crontabs/root)
+Jun 29 14:12:00 calculate crond[4655]: pam_ldap: missing file "/etc/ldap.conf"
+Jun 29 14:12:00 calculate crond[4655]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+Jun 29 14:12:00 calculate CROND[4657]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinal07@>
+Jun 29 14:12:15 calculate mutt[4659]: DIGEST-MD5 common mech free
+Jun 29 14:12:15 calculate CROND[4655]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinak>
+Jun 29 14:12:15 calculate CROND[4655]: pam_unix(crond:session): session closed for user root
+Jun 29 14:14:00 calculate crond[14768]: pam_ldap: missing file "/etc/ldap.conf"
+Jun 29 14:14:00 calculate crond[14768]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+Jun 29 14:14:00 calculate CROND[14771]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinal07>
+Jun 29 14:14:10 calculate mutt[14773]: DIGEST-MD5 common mech free
+Jun 29 14:14:10 calculate CROND[14768]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spina>
+Jun 29 14:14:10 calculate CROND[14768]: pam_unix(crond:session): session closed for user root
+Jun 29 14:16:00 calculate crond[25044]: pam_ldap: missing file "/etc/ldap.conf"
+Jun 29 14:16:00 calculate crond[25044]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+Jun 29 14:16:00 calculate CROND[25047]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinal07>
+Jun 29 14:16:10 calculate mutt[25049]: DIGEST-MD5 common mech free
+Jun 29 14:16:10 calculate CROND[25044]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spina>
+Jun 29 14:16:10 calculate CROND[25044]: pam_unix(crond:session): session closed for user root
+Jun 29 14:18:00 calculate crond[2748]: pam_ldap: missing file "/etc/ldap.conf"
+Jun 29 14:18:00 calculate crond[2748]: pam_ldap: missing file "/etc/ldap.conf"
+Jun 29 14:18:00 calculate crond[2748]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+Jun 29 14:18:00 calculate CROND[2751]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinal07@>
+Jun 29 14:18:09 calculate mutt[2753]: DIGEST-MD5 common mech free
+Jun 29 14:18:09 calculate CROND[2748]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinak>
+Jun 29 14:18:09 calculate CROND[2748]: pam_unix(crond:session): session closed for user root
+Jun 29 14:19:17 calculate crontab[13448]: (root) BEGIN EDIT (root)
+Jun 29 14:20:00 calculate crond[13452]: pam_ldap: missing file "/etc/ldap.conf"
+Jun 29 14:20:00 calculate crond[13452]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+Jun 29 14:20:00 calculate CROND[13455]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spinal07>
+Jun 29 14:20:10 calculate mutt[13457]: DIGEST-MD5 common mech free
+Jun 29 14:20:10 calculate CROND[13452]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- spina>
+Jun 29 14:20:10 calculate CROND[13452]: pam_unix(crond:session): session closed for user root
+...
+``` 
+
